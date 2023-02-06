@@ -10,33 +10,20 @@ class Program
         double X2 = double.Parse(Console.ReadLine());
         double Y2 = double.Parse(Console.ReadLine());
         int n = int.Parse(Console.ReadLine());
-        f1(n,X1,Y1,X2,Y2);
-    }
-    static void f1(int n,double X1,double Y1,double X2,double Y2){
-        if(n==0){return;}
-        
-        X2 = X2-(X2-X1)-(X2-X1);
-        X1 = (X1-X2)/2;
-        Y1 = (Y2-Y1)/2;
+
+        for(int i=1;i<=n;i++){
+            if(i%4==1){X2 = X2-(2*Math.Abs(X2-X1));}
+            else if(i%4==2){Y2 = Y2-(2*Math.Abs(Y2-Y1));}
+            else if(i%4==3){X2 = X2+(2*Math.Abs(X2-X1));}
+            else{Y2 = Y2+(2*Math.Abs(Y2-Y1));}
+             
+            X1 = (X1+X2)/2;
+            Y1 = (Y1+Y2)/2;
+        }
         Console.WriteLine(X1);
         Console.WriteLine(Y1);
-
-        f2(n-1,X1,X2,Y1,Y2);
-    }
-    static void f2(int n,double X1,double Y1,double X2,double Y2){
-        if(n==0){return;}
-        
-        X2 = X2- (X2-X1);
-    }
-    static void f3(int n,double X1,double Y1,double X2,double Y2){
-        if(n==0){return;}
-        
-        X2 = X2- (X2-X1);
-    }
-    static void f4(int n,double X1,double Y1,double X2,double Y2){
-        if(n==0){return;}
-        
-        X2 = X2- (X2-X1);
+        Console.WriteLine(X2);
+        Console.WriteLine(Y2);
     }
     
 }
