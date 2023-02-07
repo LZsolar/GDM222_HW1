@@ -10,12 +10,31 @@ class Program
         double X2 = double.Parse(Console.ReadLine());
         double Y2 = double.Parse(Console.ReadLine());
         int n = int.Parse(Console.ReadLine());
+        int i=0;
+        if(X1==X2&&Y2==Y1){i=n+1;}
+        else if(X2>=X1&&Y2>=Y1){n+=0; i=1;} //Q1
+        else if(X2>=X1&&Y2<=Y1){n+=3;i=4;} //Q2
+        else if(X2<=X1&&Y2<=Y1){n+=2;i=3;} //Q3
+        else if(X2<=X1&&Y2>=Y1){n+=1;i=2;} //Q4
 
-        for(int i=1;i<=n;i++){
-            if(i%4==1){X2 = X2-(2*Math.Abs(X2-X1));}
-            else if(i%4==2){Y2 = Y2-(2*Math.Abs(Y2-Y1));}
-            else if(i%4==3){X2 = X2+(2*Math.Abs(X2-X1));}
-            else{Y2 = Y2+(2*Math.Abs(Y2-Y1));}
+        for(i=i;i<=n;i++){
+            double tempX = Math.Abs(X2-X1),tempY = Math.Abs(Y2-Y1);
+            if(i%4==1){
+                X2 = X1-tempY;
+                Y2 = Y1+tempX;
+            } //Q1 -> Q4
+            else if(i%4==2){
+                X2 = X1-tempY;
+                Y2 = Y1-tempX;
+            } //Q4 -> Q3
+            else if(i%4==3){
+                X2 = X1+tempY;
+                Y2 = Y1-tempX;
+            } //Q3 -> Q2
+            else{
+                X2 = X1+tempY;
+                Y2 = Y1+tempX;
+            } //Q2 -> Q1
              
             X1 = (X1+X2)/2;
             Y1 = (Y1+Y2)/2;
